@@ -1,3 +1,13 @@
+# Generic pattern
+*.bak
+*.rej
+*.orig
+*~
+*.swp
+*.patch
 *.tmp
 *.img
+
+# Temporary files
+test*.bat
 adb-temp.txt
