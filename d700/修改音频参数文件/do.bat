@@ -1,0 +1,46 @@
+@echo off
+@setlocal
+
+@echo 烧录debug版本的boot，以便推入文件
+adb reboot bootloader
+fastboot flash boot boot-debug.img
+fastboot reboot
+
+@echo 等待系统启动...
+:wait
+adb get-state > nul 2>nul
+if %errorlevel% == 0 goto start
+ping -n 2 127.0.0.1 > nul 2>nul
+goto wait
+
+:start
+@echo 将文件系统挂载为可读写
+adb root
+adb remount | find "succeeded"
+if not %errorlevel% == 0 goto failed
+
+
+
+@REM =============== 这段可以自定义命令 begin ===============
+@echo adb push mixer_paths_skul.xml /system/etc/
+adb push mixer_paths_skul.xml /system/etc/ | find "100"
+if not %errorlevel% == 0 goto failed
+@REM =============== 这段可以自定义命令 end   ===============
+
+
+
+:success
+@echo ********************* 结果: 成功 :-)  *********************
+@echo 烧录回原user版本的boot
+adb reboot bootloader
+fastboot flash boot boot.img
+fastboot reboot
+goto end
+
+:failed:
+@echo ********************* 结果: 失败 :-(  *********************
+goto end
+
+:end
+pause
+@endlocal
