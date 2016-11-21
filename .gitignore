@@ -11,3 +11,6 @@
 # Temporary files
 test*.bat
 adb-temp.txt
+
+# Special files
+mixer_paths_skul.xml
