@@ -50,7 +50,11 @@ exit /b
 
 
 :success
+@REM 成功后显示为绿色
+@color 0a
+@echo;
 @echo ********************* 结果: 成功 :-)  *********************
+@echo;
 @echo 烧录回原user版本的boot
 adb reboot bootloader
 fastboot flash boot boot.img
@@ -58,9 +62,14 @@ fastboot reboot
 goto end
 
 :failed:
+@REM 失败后显示为红色
+@color 0c
+@echo;
 @echo ********************* 结果: 失败 :-(  *********************
+@echo;
 goto end
 
 :end
 pause
+@color
 @endlocal
