@@ -1,18 +1,6 @@
 @echo off
 @setlocal
 
-@echo 烧录debug版本的boot，以便推入文件
-adb reboot bootloader
-fastboot flash boot boot-debug.img
-fastboot reboot
-
-@echo 等待系统启动...
-:wait
-adb get-state > nul 2>nul
-if %errorlevel% == 0 goto start
-ping -n 2 127.0.0.1 > nul 2>nul
-goto wait
-
 :start
 @echo 将文件系统挂载为可读写
 adb root
@@ -22,10 +10,8 @@ if not %errorlevel% == 0 goto failed
 
 
 @REM =============== 这段可以自定义命令 begin ===============
-@echo adb push mixer_paths_skul.xml /system/etc/
-adb push mixer_paths_skul.xml /system/etc/ | find "100"
-if not %errorlevel% == 0 goto failed
-adb push QRD_SKUL_Speaker_cal.acdb /system/etc/acdbdata/QRD/msm8939-snd-card-skul/ | find "100"
+@echo adb push x:/qcom/LA.BR.1.2.4-05310-8x16.0/out/target/product/d700/system/priv-app/SystemUI /system/priv-app/
+adb push x:/meige/LA.BR.1.2.4-05310-8x16.0/out/target/product/d700/system/priv-app/SystemUI /system/priv-app/ | find "100"
 if not %errorlevel% == 0 goto failed
 @REM =============== 这段可以自定义命令 end   ===============
 
@@ -37,10 +23,7 @@ if not %errorlevel% == 0 goto failed
 @echo;
 @echo ********************* 结果: 成功 :-)  *********************
 @echo;
-@echo 烧录回原user版本的boot
-adb reboot bootloader
-fastboot flash boot boot.img
-fastboot reboot
+adb reboot
 goto end
 
 :failed:

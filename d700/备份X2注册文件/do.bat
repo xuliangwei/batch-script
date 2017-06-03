@@ -1,0 +1,46 @@
+@echo off
+@setlocal
+
+:start
+
+
+
+@REM =============== 这段可以自定义命令 begin ===============
+adb shell "seustubtest mkdir -p /persist/SuperBackup"
+if not %errorlevel% == 0 goto failed
+
+set ADB_TEMP_FILE=adb-temp.txt
+echo > %ADB_TEMP_FILE%
+adb shell "seustubtest cp /storage/sdcard0/sdLicense /persist/SuperBackup/" >  %ADB_TEMP_FILE%
+findstr cp %ADB_TEMP_FILE%
+if %errorlevel% == 0 (
+	if exist %ADB_TEMP_FILE% del %ADB_TEMP_FILE%
+	goto failed
+)
+if exist %ADB_TEMP_FILE% del %ADB_TEMP_FILE%
+goto success
+
+@REM =============== 这段可以自定义命令 end   ===============
+
+
+
+:success
+@REM 成功后显示为绿色
+@color 0a
+@echo;
+@echo ********************* 结果: 成功 :-)  *********************
+@echo;
+goto end
+
+:failed:
+@REM 失败后显示为红色
+@color 0c
+@echo;
+@echo ********************* 结果: 失败 :-(  *********************
+@echo;
+goto end
+
+:end
+pause
+@color
+@endlocal
