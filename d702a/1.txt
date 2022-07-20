@@ -1,0 +1,14 @@
+in_temp_ambient_raw: 
+15089
+in_temp_object_raw: 
+14910
+in_temp_object_filter_low_pass_3db_frequency: 
+17616103.600000
+in_temp_object_filter_low_pass_3db_frequency_available: 
+0.15 0.20 0.31 0.77 0.86 1.10 1.53 7.23
+in_temp_object_calibemissivity: 
+0.250003456
+in_temp_offset: 
+-13657.500000
+in_temp_scale: 
+20

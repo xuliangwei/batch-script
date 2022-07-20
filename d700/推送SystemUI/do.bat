@@ -10,8 +10,8 @@ if not %errorlevel% == 0 goto failed
 
 
 @REM =============== 这段可以自定义命令 begin ===============
-@echo adb push x:/qcom/LA.BR.1.2.4-05310-8x16.0/out/target/product/d700/system/priv-app/SystemUI /system/priv-app/
-adb push x:/meige/LA.BR.1.2.4-05310-8x16.0/out/target/product/d700/system/priv-app/SystemUI /system/priv-app/ | find "100"
+@echo adb push x:/meige/msm8939-meige2/out/target/product/d700/system/priv-app/SystemUI /system/priv-app/
+adb push adb push x:/meige/msm8939-meige2/out/target/product/d700/system/priv-app/SystemUI /system/priv-app/ | find "100"
 if not %errorlevel% == 0 goto failed
 @REM =============== 这段可以自定义命令 end   ===============
 

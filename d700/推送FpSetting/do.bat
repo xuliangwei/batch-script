@@ -10,8 +10,7 @@ if not %errorlevel% == 0 goto failed
 
 
 @REM =============== 这段可以自定义命令 begin ===============
-adb push x:/meige/LA.BR.1.2.4-05310-8x16.0/out/target/product/d700/system/app/SeuicServer /system/app/ | find "100"
-adb push x:/meige/LA.BR.1.2.4-05310-8x16.0/out/target/product/d700/system/app/FpSetting /system/app/ | find "100"
+adb push x:/meige/msm8939-meige2/out/target/product/d700/system/app/FpSetting /system/app/ | find "100"
 if not %errorlevel% == 0 goto failed
 @REM =============== 这段可以自定义命令 end   ===============
 
