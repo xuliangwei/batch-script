@@ -12,6 +12,15 @@
 # Temporary files
 test*.bat
 adb-temp.txt
+*.log
+*.txt
+*.jar
 
 # Special files
 mixer_paths_skul.xml
+
+# picture files
+*.png
+*.jpg
+*.bmp
+*.gif
